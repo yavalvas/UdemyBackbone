@@ -1,4 +1,5 @@
-var Song = Backbone.Model.extend({
+//models
+var SongExample = Backbone.Model.extend({
 	idAttribute: "songId",
 	urlRoot: "http://rest-service.guides.spring.io/greeting",
 	defaults: {
@@ -10,7 +11,7 @@ var Song = Backbone.Model.extend({
 	}
 });
 
-var song = new Song({data:1});
+var songExample = new SongExample({data:1});
 
 var Vehicle = Backbone.Model.extend({
 	idAttribute: "registrationNumber",
@@ -46,3 +47,20 @@ carInstance.set("registrationNumber", "XLI887");
 console.log(carInstance.isValid());
 
 carInstance.start();
+
+//collections
+var Song = Backbone.Model.extend();
+var Songs = Backbone.Collection.extend({
+	model: Song
+});
+
+var songs = new Songs([
+                       new Song({ title: "Song 1" }),
+                       new Song({ title: "Song 2" }),
+                       new Song({ title: "Song 3" })
+                       ]);
+
+songs.add(new Song({ title: "Song 4" }));
+var firstSong = songs.at(0);
+var songWithIdC3 = songs.get("c3");
+songs.remove(firstSong);
